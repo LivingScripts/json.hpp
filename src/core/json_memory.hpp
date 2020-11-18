@@ -75,6 +75,13 @@ namespace json {
                 return *this;
             }
         };
+
+        template<typename T, class ...Args>
+        value_ptr<T> make_value_ptr(Args &&...args) {
+            return std::move(
+                std::make_unique<T>(std::forward<Args>(args)...)
+            );
+        }
     } // core
 } // json
 
