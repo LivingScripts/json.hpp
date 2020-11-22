@@ -1,10 +1,8 @@
+#pragma once
+
 #include <memory>
-#include <iostream>
 
 #include "json_type_traits.hpp"
-
-#ifndef JSON_MEMORY_HPP
-#define JSON_MEMORY_HPP
 
 namespace json {
     namespace core {
@@ -84,5 +82,3 @@ namespace json {
         }
     } // core
 } // json
-
-#endif //JSON_MEMORY_HPP

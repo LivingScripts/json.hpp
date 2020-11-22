@@ -1,7 +1,6 @@
-#include <type_traits>
+#pragma once
 
-#ifndef JSON_TYPE_TRAITS_HPP
-#define JSON_TYPE_TRAITS_HPP
+#include <type_traits>
 
 namespace json {
     namespace core {
@@ -18,5 +17,3 @@ namespace json {
         struct cloneable<T, decltype(void(&T::clone))> : std::true_type { };
     } // core
 } // json
-
-#endif //JSON_TYPE_TRAITS_HPP
