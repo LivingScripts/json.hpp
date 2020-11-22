@@ -5,11 +5,32 @@
 namespace json {
     namespace core {
         template<typename T>
-        std::string to_json_string(T const&) = delete;
+        inline std::string toJsonString(T const&) = delete;
+        inline std::string toJsonString(int const &i) {
+            std::stringstream ss;
+            ss << i;
+            return ss.str();
+        }
+
+        inline std::string toJsonString(long const &l) {
+            std::stringstream ss;
+            ss << l;
+            return ss.str();
+        }
+
+        inline std::string toJsonString(double const &d) {
+            std::stringstream ss;
+            ss << d;
+            return ss.str();
+        }
+
+        inline std::string toJsonString(std::string const &s) {
+            return "\"" + s + "\"";
+        }
 
         class JsonData {
         public:
-            virtual std::string to_string() const = 0;
+            virtual std::string toString() const = 0;
             virtual std::unique_ptr<JsonData> clone() const = 0;
             virtual ~JsonData() = default;
         };
@@ -19,15 +40,15 @@ namespace json {
         public:
             T value;
 
-            std::string to_string() const final {
-                return to_json_string(value);
+            std::string toString() const final {
+                return toJsonString(value);
             }
 
             JsonStorage() = default;
             JsonStorage(JsonStorage const&) = default;
-            JsonStorage(JsonStorage const&&) = default;
+            JsonStorage(JsonStorage &&) = default;
             JsonStorage& operator=(JsonStorage const&) = default;
-            JsonStorage& operator=(JsonStorage const&&) = default;
+            JsonStorage& operator=(JsonStorage &&) = default;
 
         // take owner ship of the initializer object
             JsonStorage(T o):
