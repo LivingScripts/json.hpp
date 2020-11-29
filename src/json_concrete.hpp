@@ -47,6 +47,10 @@ namespace json {
 
         JsonValue const& operator[](std::string const&) const;
 
+        JsonValue& operator[](size_t const &idx);
+
+        JsonValue const& operator[](size_t const &idx) const;
+
         JsonValue(int i);
 
         JsonValue(long l);

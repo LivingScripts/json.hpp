@@ -70,6 +70,26 @@ json::JsonValue const& json::JsonValue::operator[](std::string const &key) const
     }
 }
 
+json::JsonValue& json::JsonValue::operator[](size_t const &idx) {
+    if(!data) throw std::runtime_error("null object is not subscriptable");
+    JsonStorage<Array> *pval = dynamic_cast<JsonStorage<Array>*> (data.get());
+    if(!pval) {
+        throw std::runtime_error("value type not subscriptable");
+    } else {
+        return (pval->value).at(idx);
+    }
+}
+
+json::JsonValue const& json::JsonValue::operator[](size_t const &idx) const {
+    if(!data) throw std::runtime_error("null object is not subscriptable");
+    JsonStorage<Array> const *pval = dynamic_cast<JsonStorage<Array>*> (data.get());
+    if(!pval) {
+        throw std::runtime_error("value type not subscriptable");
+    } else {
+        return (pval->value).at(idx);
+    }
+}
+
 std::string json::toJsonString(std::map<std::string, json::JsonValue> const &map) {
     std::string str = "{";
     auto start = map.cbegin();
