@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iomanip>
+
 #include "json_memory.hpp"
 #include "../utils.hpp"
 
@@ -21,7 +23,7 @@ namespace json {
 
         inline std::string toJsonString(double const &d) {
             std::stringstream ss;
-            ss << d;
+            ss << std::setprecision(16) << d;
             return ss.str();
         }
 
