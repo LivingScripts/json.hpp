@@ -4,7 +4,7 @@ json.o: main.o json_concrete.o
 main.o: main.cpp
 	g++ -c main.cpp
 
-json_concrete.o: src/json_concrete.hpp src/json_concrete.cpp src/core/json_abstract.hpp
+json_concrete.o: src/json_concrete.hpp src/json_concrete.cpp src/core/json_abstract.hpp src/utils.hpp
 	g++ -c src/json_concrete.cpp
 
 clean:

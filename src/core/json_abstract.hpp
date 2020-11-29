@@ -1,6 +1,7 @@
 #pragma once
 
 #include "json_memory.hpp"
+#include "../utils.hpp"
 
 namespace json {
     namespace core {
@@ -25,7 +26,7 @@ namespace json {
         }
 
         inline std::string toJsonString(std::string const &s) {
-            return "\"" + s + "\"";
+            return json::addQuotes(s);
         }
 
         class JsonData {

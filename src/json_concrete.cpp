@@ -71,14 +71,14 @@ json::JsonValue const& json::JsonValue::operator[](std::string const &key) const
 }
 
 std::string json::toJsonString(std::map<std::string, json::JsonValue> const &map) {
-    std::string str = "\"{";
+    std::string str = "{";
     auto start = map.cbegin();
     auto end = map.cend();
-    str += (start->first + ":" + start->second.toString()); // sparing an if inside the loop
+    str += (json::addQuotes(start->first) + ":" + start->second.toString()); // sparing an if inside the loop
     while(++start != end) {
-        str += ("," + start->first + ":" + start->second.toString());
+        str += ("," + json::addQuotes(start->first) + ":" + start->second.toString());
     }
-    return str + "\"}";
+    return str + "}";
 }
 
 std::string json::toJsonString(std::vector<JsonValue> const &arr) {
